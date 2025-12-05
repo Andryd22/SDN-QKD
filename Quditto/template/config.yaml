@@ -1,0 +1,62 @@
+---
+quditto_version: 2.0
+config:
+  application_interface: etsi-gs-qkd-014
+  qkd_protocol: bb84
+  controller: A
+  ip_controller: IP_NODO_A
+  netsquid_user: Andry
+  netsquid_pwd: TesiQKD2025
+
+sites:
+  - Pisa
+
+nodes:
+  - node_name: A
+    node_site: Pisa
+    node_ip: IP_NODO_A
+    neighbour_nodes:
+
+      - name: B
+        link_length: 24.2
+        protocol: bb84_att.py
+        eavesdropper: False
+
+      - name: C
+        link_length: 26.2
+        protocol: bb84_att.py
+        eavesdropper: False
+
+
+
+  - node_name: B
+    node_site: Pisa
+    node_ip: IP_NODO_B
+    neighbour_nodes:
+
+      - name: A
+        link_length: 24.2
+        protocol: bb84_att.py
+        eavesdropper: False
+
+      - name: C
+        link_length: 7.4
+        protocol: bb84_att.py
+        eavesdropper: False
+
+
+
+  - node_name: C
+    node_site: Pisa
+    node_ip: IP_NODO_C
+    neighbour_nodes:
+
+      - name: A
+        link_length: 26.2
+        protocol: bb84_att.py
+        eavesdropper: False
+        
+      - name: B
+        link_length: 7.4
+        protocol: bb84_att.py
+        eavesdropper: False
