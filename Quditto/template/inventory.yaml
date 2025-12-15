@@ -1,0 +1,24 @@
+---
+all:
+  hosts:
+    A:
+      ansible_host: IP_NODO_A
+      ansible_connection: ssh
+      ansible_user: ubuntu
+      ansible_become_pass: ubuntu 
+      ansible_ssh_pass: ubuntu
+      py_env: /home/ubuntu/.local/lib/python3.10
+    B:
+      ansible_host: IP_NODO_B
+      ansible_connection: ssh
+      ansible_user: ubuntu
+      ansible_become_pass: ubuntu
+      ansible_ssh_pass: ubuntu
+      py_env: /home/ubuntu/.local/lib/python3.10
+    C:
+      ansible_host: IP_NODO_C
+      ansible_connection: ssh
+      ansible_user: ubuntu
+      ansible_become_pass: ubuntu
+      ansible_ssh_pass: ubuntu
+      py_env: /home/ubuntu/.local/lib/python3.10
