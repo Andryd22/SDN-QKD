@@ -1,0 +1,70 @@
+
+------------------ NELLA VM
+
+1. Fare il build del docker, nella cartella Dockerfile
+> sudo docker build -t emulator-etsi:1.0 .
+
+2. Caricare una immagine docker
+> sudo docker load -i ./emulator-openroadm/roadm-9deg.tar.gz
+
+3. Avviare il docker sulla macchina, risponde alla porta 11002 di localhost, sarà poi da fare con IP
+> sudo docker run -it -d --name cassini_1 -p 11002:830 onosproject/oc-cassini:0.21
+> sudo docker run -it -d --name etsi_1 -p 11002:830 emulator-etsi:1.0
+> sudo docker run -it --name etsi_1 -p 11002:830 emulator-etsi:1.0
+> sudo docker run --net=netbr0 --ip=10.100.101.31 --name etsi1 -it emulator-etsi:1.0
+
+4. Testare che il docker sia funzionante con un get
+> netconf-console2 --host=127.0.0.1 --port=11002 -u root -p root --rpc=emulator-test/get-terminal-device.xml
+> netconf-console2 --host=10.100.101.31 --port=830 -u root -p root --rpc=./emulator-test/get-etsi-qkd.xml
+> netconf-console2 --host=10.100.101.31 --port=830 -u root -p root --rpc=./emulator-test/edit-config-etsi-qkd_link_wavelength.xml
+> netconf-console2 --host=10.100.101.31 --port=830 -u root -p root --rpc=./emulator-test/delete-config-etsi-link.xml
+> netconf-console2 --host=10.79.1.47 --port=11001 -u root -p root --rpc=./emulator-test/get-etsi-qkd.xml
+
+5. Elencare i docker attivi
+> sudo docker ps -a
+
+6. Copiare i file YANG etsi
+> sudo docker cp /home/alessio/Downloads/etsi-qkd-sdn-node.yang cassini_1:/root/yang/
+> sudo docker cp /home/alessio/Downloads/etsi-qkd-node-types.yang cassini_1:/root/yang
+
+6. Copiare il datastore
+> sudo docker cp /home/alessio/Downloads/init-sample-qkd-node-defaults-data.xml cassini_1:/root/yang/
+
+8. Entrare nel docker
+> sudo docker exec -ti cassini_1 bash
+> sudo docker exec -ti etsi_1 bash
+
+9. Stoppare e rimuovere un docker in esecuzione
+> sudo docker stop -t 1 cassini_1
+> sudo docker rm cassini_1
+
+10. Generare skeleton xml
+> pyang -f sample-xml-skeleton --sample-xml-skeleton-defaults -o init-qkd-node.xml ./etsi-qkd-sdn-node.yang
+
+11. Salvare un immagine del docker 
+> sudo docker save onosproject/oc-cassini:0.21 > cassini.tar
+
+12. Vedere i docker logs
+> sudo docker logs -f qkd1
+
+------------------ NEL DOCKER
+
+0. Visualizzare gli yang modules istallati
+> sysrepoctl --list
+
+1. Istallare gli yang etsi nel docker
+> sysrepoctl --install ./etsi-qkd-node-types.yang --owner root --group root --permissions 666
+
+2. Rimuovere gli yang etsi 
+> sysrepoctl --uninstall --module=etsi-qkd-sdn-node
+
+3. Importare il datastore
+> sysrepocfg --import=init-sample-qkd-node-defaults-data.xml --format=xml etsi-qkd-sdn-node
+> sysrepocfg --datastore=startup --import=init-sample-qkd-node-defaults-data.xml --format=xml etsi-qkd-sdn-node
+> sysrepoctl --install ./etsi-qkd-sdn-node.yang --init-data ./init-etsi-qkd-sdn-node.xml
+> sysrepoctl -v3 --install ./etsi-qkd-sdn-node.yang --init-data ./init-device.xml --owner root --group root --permissions 666
+
+4. Istallazione definitiva modelli ETSI
+> sysrepoctl --install ./etsi-qkd-node-types.yang --owner root --group root --permissions 666
+> sysrepoctl -v3 --install ./etsi-qkd-sdn-node.yang --init-data ./init-device.xml --owner root --group root --permissions 666
+

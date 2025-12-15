@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:56cf6bf1-b9ff-4423-b749-fa76960e0912">
+  <data>
+    <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+      <qkdn_id>aaaaaaaa-aaaa-aaaa-0031-000000006055</qkdn_id>
+      <qkdn_version>2.1.1</qkdn_version>
+      <qkdn_location_id/>
+      <qkdn_capabilities>
+        <link_stats_support>true</link_stats_support>
+        <application_stats_support>true</application_stats_support>
+        <key_relay_mode_enable>true</key_relay_mode_enable>
+      </qkdn_capabilities>
+      <qkd_interfaces>
+        <qkd_interface>
+          <qkdi_id>1</qkdi_id>
+          <qkdi_model>
+          </qkdi_model>
+          <qkdi_type xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:CV-QKD</qkdi_type>
+          <qkdi_att_point>
+            <device>local-device</device>
+            <port>1</port>
+          </qkdi_att_point>
+          <qkdi_capabilities>
+            <role_support xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:TRANSCEIVER</role_support>
+            <wavelength_range>1-20</wavelength_range>
+            <max_absorption>0.0</max_absorption>
+          </qkdi_capabilities>
+        </qkd_interface>
+        <qkd_interface>
+          <qkdi_id>2</qkdi_id>
+          <qkdi_model>
+          </qkdi_model>
+          <qkdi_type xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:CV-QKD</qkdi_type>
+          <qkdi_att_point>
+            <device>local-device</device>
+            <port>2</port>
+          </qkdi_att_point>
+          <qkdi_capabilities>
+            <role_support xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:TRANSCEIVER</role_support>
+            <wavelength_range>1-30</wavelength_range>
+            <max_absorption>0.0</max_absorption>
+          </qkdi_capabilities>
+        </qkd_interface>
+      </qkd_interfaces>
+      <qkd_links>
+        <qkd_link>
+          <qkdl_id>bbbbbbbb-0031-bbbb-0032-bbbbbbbbbbbb</qkdl_id>
+          <qkdl_status xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:OFF</qkdl_status>
+          <qkdl_enable>true</qkdl_enable>
+          <qkdl_local>
+            <qkdn_id>aaaaaaaa-aaaa-aaaa-0031-000000006055</qkdn_id>
+            <qkdi_id>1</qkdi_id>
+          </qkdl_local>
+          <qkdl_remote>
+            <qkdn_id>aaaaaaaa-aaaa-aaaa-0032-000000006055</qkdn_id>
+            <qkdi_id>2</qkdi_id>
+          </qkdl_remote>
+          <qkdl_type xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:PHYS</qkdl_type>
+          <phys_qkd_role xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:TRANSMITTER</phys_qkd_role>
+        </qkd_link>
+      </qkd_links>
+    </qkd_node>
+  </data>
+</rpc-reply>

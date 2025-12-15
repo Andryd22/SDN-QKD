@@ -1,0 +1,9 @@
+{
+  "links": {
+	"netconf:10.100.101.31:830/1-netconf:10.100.101.32:830/1": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+	"netconf:10.100.101.32:830/1-netconf:10.100.101.31:830/1": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+	"netconf:10.100.101.31:830/2-netconf:10.100.101.32:830/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+        "netconf:10.100.101.32:830/2-netconf:10.100.101.31:830/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}}
+ }
+}
+

@@ -1,0 +1,7 @@
+{
+  "links": {
+	"netconf:192.168.1.181:830/1-netconf:192.168.1.182:830/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+        "netconf:192.168.1.182:830/1-netconf:192.168.1.181:830/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}}
+ }
+}
+

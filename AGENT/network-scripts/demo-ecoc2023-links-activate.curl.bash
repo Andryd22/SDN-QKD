@@ -1,0 +1,7 @@
+curl -u karaf:karaf -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8181/onos/quantum-app/links/activateLink?key=bbbbbbbb-0032-bbbb-0033-bbbbbbbbbbbb'
+echo
+
+curl -u karaf:karaf -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8181/onos/quantum-app/links/activateLink?key=bbbbbbbb-7901-bbbb-7092-bbbbbbbbbbbb'
+echo
+
+

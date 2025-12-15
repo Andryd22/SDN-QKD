@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <target>
+    <running/>
+  </target>
+  <config xmlns:etsi-node="urn:etsi:qkd:yang:etsi-qkd-node">
+    <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+      <qkd_links>
+        <qkd_link>
+          <qkdl_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdl_id>
+          <phys_wavelength>18</phys_wavelength>
+        </qkd_link>
+      </qkd_links>
+    </qkd_node>
+  </config>
+</edit-config>

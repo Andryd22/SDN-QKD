@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+    <qkdn_id/>
+    <qkdn_status/>
+    <qkdn_version/>
+    <qkdn_location_id></qkdn_location_id>
+    <qkdn_capabilities>
+      <link_stats_support>true</link_stats_support>
+      <application_stats_support>true</application_stats_support>
+      <key_relay_mode_enable>true</key_relay_mode_enable>
+    </qkdn_capabilities>
+    <qkd_applications>
+      <qkd_app>
+        <app_id/>
+        <!-- # enum: ON, DISCONNECTED, OUT-OF-TIME, ZOMBIE ::: CONFIG FALSE -->
+        <app_status/>
+        <!-- # enum: CLIENT, INTERNAL -->
+        <app_type/>
+        <!-- It is the master SAE -->
+        <server_app_id/>
+        <!-- It is the list of slave SAEs -->
+        <client_app_id>
+          <!-- # entries: 0.. -->
+        </client_app_id>
+        <app_priority>0</app_priority>
+        <creation_time/>
+        <expiration_time/>
+        <app_statistics>
+          <statistics>
+            <end_time/>
+            <start_time/>
+            <consumed_bits/>
+          </statistics>
+        </app_statistics>
+        <app_qos>
+          <max_bandwidth/>
+          <min_bandwidth/>
+          <jitter/>
+          <ttl/>
+          <clients_shared_path_enable>false</clients_shared_path_enable>
+          <clients_shared_keys_required>false</clients_shared_keys_required>
+        </app_qos>
+        <backing_qkdl_id>
+          <!-- # entries: 0.. -->
+        </backing_qkdl_id>
+        <local_qkdn_id/>
+        <remote_qkdn_id/>
+      </qkd_app>
+    </qkd_applications>
+    <qkd_interfaces>
+      <qkd_interface>
+        <qkdi_id/>
+        <qkdi_model/>
+        <qkdi_type/>
+        <qkdi_att_point>
+          <device/>
+          <port/>
+        </qkdi_att_point>
+        <qkdi_capabilities>
+          <role_support/>
+          <wavelength_range/>
+          <max_absorption/>
+        </qkdi_capabilities>
+        <qkdi_status/>
+      </qkd_interface>
+    </qkd_interfaces>
+    <qkd_links>
+      <qkd_link>
+        <qkdl_id/>
+        <qkdl_status/>
+        <qkdl_enable>true</qkdl_enable>
+        <qkdl_local>
+          <qkdn_id/>
+          <qkdi_id/>
+        </qkdl_local>
+        <qkdl_remote>
+          <qkdn_id/>
+          <qkdi_id/>
+        </qkdl_remote>
+        <qkdl_type/>
+        <qkdl_applications>
+          <!-- # entries: 0.. -->
+        </qkdl_applications>
+        <virt_prev_hop/>
+        <virt_next_hop>
+          <!-- # entries: 0.. -->
+        </virt_next_hop>
+        <virt_bandwidth/>
+        <phys_channel_att/>
+        <phys_wavelength/>
+        <phys_qkd_role/>
+        <qkdl_performance>
+          <expected_consumption/>
+          <skr/>
+          <eskr/>
+          <phys_perf>
+            <perf_type/>
+            <value/>
+          </phys_perf>
+        </qkdl_performance>
+      </qkd_link>
+    </qkd_links>
+  </qkd_node>
+</data>

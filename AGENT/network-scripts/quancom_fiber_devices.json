@@ -1,0 +1,34 @@
+{
+  "devices": {
+    "netconf:10.100.101.11:2022": {
+      "netconf": {
+        "ip": "10.100.101.11",
+        "port": "830",
+        "username": "openroadm",
+        "password": "openroadm"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : 100,
+        "gridY" : 500,
+        "name": "FIBER-ROADM-1",
+        "driver": "openroadm"
+      }
+    },
+    "netconf:10.100.101.12:2022": {
+      "netconf": {
+        "ip": "10.100.101.12",
+        "port": "830",
+        "username": "openroadm",
+        "password": "openroadm"
+      },
+      "basic": {
+	"locType" : "grid",
+        "gridX" : 100,
+        "gridY" : 750,
+        "name": "FIBER-ROADM-2",
+        "driver": "openroadm"
+      }
+    }
+  }
+}

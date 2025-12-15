@@ -1,0 +1,359 @@
+/* Copyright 2022 ETSI
+Licensed under the BSD-3 Clause (https://forge.etsi.org/legal-matters) */
+
+module etsi-qkd-node-types {
+
+  yang-version "1";
+
+  namespace "urn:etsi:qkd:yang:etsi-qkd-node-types";
+
+  prefix "etsi-qkdn-types";
+
+  organization "ETSI ISG QKD";
+
+  contact
+    "https://www.etsi.org/committee/qkd
+    vicente@fi.upm.es";
+
+  description
+    "This module contains the base types created for 
+    the software-defined QKD node information models
+    specified in ETSI GS QKD 015 V2.1.1
+    - QKD-TECHNOLOGY-TYPES
+    - QKDN-STATUS-TYPES
+    - QKD-LINK-TYPES
+    - QKD-ROLE-TYPES
+    - QKD-APP-TYPES
+    - Wavelength
+    ";
+
+  revision "2022-01-30" {
+    description
+      "Refinement of the YANG model to make it compatible with the ETSI ISG QKD 018. Minor fixes.";
+  }
+  
+  revision "2020-09-30" {
+    description
+      "First definition based on initial requirement analysis.";
+  }
+
+  identity QKD-TECHNOLOGY-TYPES {
+  	description "Quantum Key Distribution System base technology types.";
+  }
+
+  identity CV-QKD {
+    base QKD-TECHNOLOGY-TYPES;
+    description "Continuous Variable base technology.";
+  }
+
+  identity DV-QKD {
+    base QKD-TECHNOLOGY-TYPES;
+    description "Discrete Variable base technology.";
+  }
+
+  identity DV-QKD-COW {
+    base QKD-TECHNOLOGY-TYPES;
+    description "COW base technology.";
+  }
+
+  identity DV-QKD-2Ws {
+    base QKD-TECHNOLOGY-TYPES;
+    description "2-Ways base technology.";
+  }
+  
+  typedef qkd-technology-types {
+    type identityref {
+      base QKD-TECHNOLOGY-TYPES;
+    }
+    description "This type represents the base technology types of the SD-QKD system.";
+  }
+  
+  identity QKDN-STATUS-TYPES {
+    description "Base identity used to identify the SD-QKD node status.";
+  }
+  
+  identity NEW {
+    base QKDN-STATUS-TYPES;
+    description "The QKD node is installed.";
+  }
+  
+  identity OPERATING {
+    base QKDN-STATUS-TYPES;
+    description "The QKD node is up.";
+  }
+  
+  identity DOWN {
+    base QKDN-STATUS-TYPES;
+    description "The QKD node is not working as expected.";
+  }
+  
+  identity FAILURE {
+    base QKDN-STATUS-TYPES;
+    description "The QKD node cannot be accessed by SDN controller with communication failure.";
+  }
+  
+  identity OUT {
+    base QKDN-STATUS-TYPES;
+    description "The QKD node is switched off and uninstalled.";
+  }
+  
+  typedef qkdn-status-types {
+    type identityref {
+      base QKDN-STATUS-TYPES;
+    }
+    description "This type represents the status of the SD-QKD node.";
+  }
+
+  identity QKD-LINK-TYPES {
+  	description "QKD key association link types.";
+  }
+
+  identity VIRT {
+    base QKD-LINK-TYPES;
+    description "Virtual Link.";
+  }
+
+  identity PHYS {
+    base QKD-LINK-TYPES;
+    description "Physical Link.";
+  }
+  
+  typedef qkd-link-types {
+    type identityref {
+      base QKD-LINK-TYPES;
+    }
+    description "This type represents the key association link type between two SD-QKD nodes.";
+  }
+
+  identity QKD-ROLE-TYPES {
+  	description "QKD Role Type.";
+  }
+
+  identity TRANSMITTER {
+    base QKD-ROLE-TYPES;
+    description "QKD module working as transmitter.";
+  }
+
+  identity RECEIVER {
+    base QKD-ROLE-TYPES;
+    description "QKD module working as receiver.";
+  }
+
+  identity TRANSCEIVER {
+    base QKD-ROLE-TYPES;
+    description "QKD System that can work as a transmitter or receiver.";
+  }
+  
+  typedef qkd-role-types {
+    type identityref {
+      base QKD-ROLE-TYPES;
+    }
+    description "This type represents the working mode of a SD-QKD module.";
+  }
+
+  identity QKD-APP-TYPES {
+  	description "Application types.";
+  }
+
+  identity CLIENT {
+    base QKD-APP-TYPES;
+    description "Application working as client.";
+  }
+
+  identity INTERNAL {
+    base QKD-APP-TYPES;
+    description "Internal QKD node application.";
+  }
+  
+  typedef qkd-app-types {
+    type identityref {
+      base QKD-APP-TYPES;
+    }
+    description "This type represents the application class consuming key from SD-QKD nodes.";
+  }
+
+  identity PHYS-PERF-TYPES {
+    description "Physical performance types.";
+  }
+
+  identity QBER {
+    base PHYS-PERF-TYPES;
+    description "Quantum Bit Error Rate.";
+  }
+
+  identity SNR {
+    base PHYS-PERF-TYPES;
+    description "Signal to Noise Ratio.";
+  }
+  
+  typedef phys-perf-types {
+    type identityref {
+      base PHYS-PERF-TYPES;
+    }
+    description "This type represents physical performance types.";
+  }
+
+  identity LINK-STATUS-TYPES {
+    description "Status of the key association QKD link (physical and virtual).";
+  }
+
+  identity ACTIVE {
+    base LINK-STATUS-TYPES;
+    description "Link actively generating keys.";
+  }
+
+  identity PASSIVE {
+    base LINK-STATUS-TYPES;
+    description "No key generation on key association QKD link but a pool of keys
+    are still available.";
+  }
+
+  identity PENDING {
+    base LINK-STATUS-TYPES;
+    description "Waiting for activation and no keys are available.";
+  }
+
+  identity OFF {
+    base LINK-STATUS-TYPES;
+    description "No key generation and no keys are available.";
+  }
+  
+  typedef link-status-types {
+    type identityref {
+      base LINK-STATUS-TYPES;
+    }
+    description "This type represents the status of a key association QKD link, both physical and virtual.";
+  }
+
+  ///
+
+  identity LINK-AUTH-STATUS-TYPES {
+        description "Authentication Status.";
+  }
+
+  identity AUTHORIZED {
+    base LINK-AUTH-STATUS-TYPES;
+    description "The link authentication has succeeded.";
+  }
+
+  identity NOT_AUTHORIZED {
+    base LINK-AUTH-STATUS-TYPES;
+    description "The link authentication has failed.";
+  }
+
+  identity PROGRESSING {
+    base LINK-AUTH-STATUS-TYPES;
+    description "The link authentication is progressing.";
+  }
+
+  identity UNKNOWN {
+    base LINK-AUTH-STATUS-TYPES;
+    description "The link authentication has been NOT performed.";
+  }
+
+  typedef link-auth-status-types {
+    type identityref {
+      base LINK-AUTH-STATUS-TYPES;
+    }
+    description "This type represents the authentication status of a QKD link.";
+  }
+
+  ///
+  
+  identity IFACE-STATUS-TYPES {
+  	description "Interface Status.";
+  }
+
+  identity ENABLED {
+    base IFACE-STATUS-TYPES;
+    description "The interfaces is up.";
+  }
+
+  identity DISABLED {
+    base IFACE-STATUS-TYPES;
+    description "The interfaces is down.";
+  }
+
+  identity FAILED {
+    base IFACE-STATUS-TYPES;
+    description "The interfaces has failed.";
+  }
+  
+  typedef iface-status-types {
+    type identityref {
+      base IFACE-STATUS-TYPES;
+    }
+    description "This type represents the status of a interface between a SD-QKD node and a SD-QKD module.";
+  }
+
+  identity APP-STATUS-TYPES {
+  	description "Application types.";
+  }
+
+  identity ON {
+    base APP-STATUS-TYPES;
+    description "The application is on.";
+  }
+
+  identity DISCONNECTED {
+    base APP-STATUS-TYPES;
+    description "The application is disconnected.";
+  }
+
+  identity OUT-OF-TIME {
+    base APP-STATUS-TYPES;
+    description "The application is out of time.";
+  }
+
+  identity ZOMBIE {
+    base APP-STATUS-TYPES;
+    description "The application is in a zombie state.";
+  }
+  
+  typedef app-status-types {
+    type identityref {
+      base APP-STATUS-TYPES;
+    }
+    description "This type represents the status of an application  consuming key from SD-QKD nodes.";
+  }
+
+  identity SEVERITY-TYPES {
+  	description "Error/Failure severity levels.";
+  }
+
+  identity MAJOR {
+    base SEVERITY-TYPES;
+    description "Major error/failure.";
+  }
+
+  identity MINOR {
+    base SEVERITY-TYPES;
+    description "Minor error/failure.";
+  }
+  
+  typedef severity-types {
+    type identityref {
+      base SEVERITY-TYPES;
+    }
+    description "This type represents the Error/Failure severity levels.";
+  }
+
+  typedef wavelength {
+  		type string {
+                pattern "([1-9][0-9]{0,3})";
+            }
+            description
+                "A WDM channel number (starting at 1). For example: 20";
+  }
+
+  //Pattern from "A Yang Data Model for WSON Optical Networks".
+  typedef wavelength-range-type {
+            type string {
+                pattern "([1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?" +
+                        "(,[1-9][0-9]{0,3}(-[1-9][0-9]{0,3})?)*)";
+            }
+            description
+                "A list of WDM channel numbers (starting at 1)
+                 in ascending order. For example: 1,12-20,40,50-80";
+  }
+}

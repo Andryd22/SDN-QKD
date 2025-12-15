@@ -1,0 +1,35 @@
+{
+  "devices": {
+    "netconf:10.100.101.31:830": {
+      "netconf": {
+        "ip": "10.100.101.31",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+	"locType" : "grid",
+        "gridX" : 0,
+        "gridY" : 400,
+        "name": "QKD-1",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:10.100.101.32:830": {
+      "netconf": {
+        "ip": "10.100.101.32",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : 0,
+        "gridY" : 600,
+        "name": "QKD-2",
+        "driver": "quancom-netconf"
+      }
+    }
+  }
+}
+

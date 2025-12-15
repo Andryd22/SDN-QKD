@@ -1,0 +1,60 @@
+  <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node" xmlns:types="urn:etsi:qkd:yang:etsi-qkd-node-types">
+    <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+    <!-- <qkdn_status>types:NEW</qkdn_status>
+    <!-- type: etsi-qkdn-types:qkd-status-types: NEW, OPERATING, DOWN, FAILURE, OUT -->
+    <qkdn_version>2.1.1</qkdn_version>
+    <qkdn_location_id></qkdn_location_id>
+    <qkdn_capabilities>
+      <link_stats_support>true</link_stats_support>
+      <application_stats_support>true</application_stats_support>
+      <key_relay_mode_enable>true</key_relay_mode_enable>
+    </qkdn_capabilities>
+    <qkd_interfaces>
+      <qkd_interface>
+        <!-- # keys: qkdi_id-->
+        <!-- # entries: 0.. -->
+        <qkdi_id>1</qkdi_id>
+        <qkdi_model>
+          <!-- type: string -->
+        </qkdi_model>
+        <qkdi_type>types:CV-QKD</qkdi_type>
+        <!-- type: etsi-qkdn-types:qkd-technology-types: CV-QKD, DV-QKD, DV-QKD-COW, DV-QKD-2Ws -->
+        <qkdi_att_point>
+          <device>local-device</device>
+          <port>1</port>
+        </qkdi_att_point>
+        <qkdi_capabilities>
+          <role_support>types:TRANSCEIVER</role_support>
+            <!-- type: etsi-qkdn-types:qkd-role-types: TRANSMITTER, RECEIVER, TRANSCEIVER -->
+          <wavelength_range>1-20</wavelength_range>
+            <!-- type: etsi-qkdn-types:wavelength-range-type: REGEX string -->
+          <max_absorption>0.0</max_absorption>
+        </qkdi_capabilities>
+        <!-- <qkdi_status>types:ENABLED</qkdi_status>
+          <!-- type: etsi-qkdn-types:iface-status-types: ENABLED, DISABLED, FAILED -->
+      </qkd_interface>
+      <qkd_interface>
+        <!-- # keys: qkdi_id-->
+        <!-- # entries: 0.. -->
+        <qkdi_id>2</qkdi_id>
+        <qkdi_model>
+          <!-- type: string -->
+        </qkdi_model>
+        <qkdi_type>types:CV-QKD</qkdi_type>
+        <!-- type: etsi-qkdn-types:qkd-technology-types: CV-QKD, DV-QKD, DV-QKD-COW, DV-QKD-2Ws -->
+        <qkdi_att_point>
+          <device>local-device</device>
+          <port>2</port>
+        </qkdi_att_point>
+        <qkdi_capabilities>
+          <role_support>types:TRANSCEIVER</role_support>
+            <!-- type: etsi-qkdn-types:qkd-role-types: TRANSMITTER, RECEIVER, TRANSCEIVER -->
+          <wavelength_range>1-30</wavelength_range>
+            <!-- type: etsi-qkdn-types:wavelength-range-type: REGEX string -->
+          <max_absorption>0.0</max_absorption>
+        </qkdi_capabilities>
+        <!-- <qkdi_status>types:ENABLED</qkdi_status>
+          <!-- type: etsi-qkdn-types:iface-status-types: ENABLED, DISABLED, FAILED -->
+      </qkd_interface>
+    </qkd_interfaces>
+  </qkd_node>

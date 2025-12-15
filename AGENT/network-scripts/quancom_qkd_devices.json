@@ -1,0 +1,65 @@
+{
+  "devices": {
+    "netconf:10.100.101.31:830": {
+      "netconf": {
+        "ip": "10.100.101.31",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+        },
+      "basic": {
+         "locType" : "grid",
+        "gridX" : -50,
+        "gridY" : 450,
+        "name": "QKD-1",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:10.100.101.32:830": {
+      "netconf": {
+        "ip": "10.100.101.32",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : -50,
+        "gridY" : 800,
+        "name": "QKD-2",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:10.100.101.33:830": {
+      "netconf": {
+        "ip": "10.100.101.33",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : 650,
+        "gridY" : 450,
+        "name": "QKD-3",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:10.100.101.34:830": {
+      "netconf": {
+        "ip": "10.100.101.34",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : 650,
+        "gridY" : 800,
+        "name": "QKD-4",
+        "driver": "quancom-netconf"
+      }
+    }
+  }
+}
+

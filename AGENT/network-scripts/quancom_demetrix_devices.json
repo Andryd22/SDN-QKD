@@ -1,0 +1,35 @@
+{
+  "devices": {
+    "netconf:192.168.1.181:830": {
+      "netconf": {
+        "ip": "192.168.1.181",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+        },
+      "basic": {
+         "locType" : "grid",
+        "gridX" : -150,
+        "gridY" : 250,
+        "name": "QKD-181",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:192.168.1.182:830": {
+      "netconf": {
+        "ip": "192.168.1.182",
+        "port": "830",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : 800,
+        "gridY" : 250,
+        "name": "QKD-182",
+        "driver": "quancom-netconf"
+      }
+    }
+  }
+}
+

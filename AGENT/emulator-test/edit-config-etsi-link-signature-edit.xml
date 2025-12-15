@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <target>
+    <running/>
+  </target>
+  <config>
+    <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+      <qkd_links>
+        <qkd_link>
+          <qkdl_id>f81d4fae-aaaa-aaaa-aaaa-00a0c91e6bf6</qkdl_id>
+          <qkdl_status xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:OFF</qkdl_status>
+          <qkdl_enable>false</qkdl_enable>
+          <qkdl_auth_status xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:PROGRESSING</qkdl_auth_status>
+        </qkd_link>
+      </qkd_links>
+    </qkd_node>
+  </config>
+</edit-config>
+

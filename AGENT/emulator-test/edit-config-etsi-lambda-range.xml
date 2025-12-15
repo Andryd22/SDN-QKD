@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <target>
+    <running/>
+  </target>
+  <config>
+    <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+      <qkd_interfaces>
+        <qkd_interface>
+          <qkdi_id>1</qkdi_id>
+          <qkdi_capabilities>
+            <wavelength_range>1-25</wavelength_range>
+          </qkdi_capabilities>
+        </qkd_interface>
+        <qkd_interface>
+          <qkdi_id>2</qkdi_id>
+          <qkdi_capabilities>
+            <wavelength_range>1-35</wavelength_range>
+          </qkdi_capabilities>
+        </qkd_interface>
+      </qkd_interfaces>
+    </qkd_node>
+  </config>
+</edit-config>

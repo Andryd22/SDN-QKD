@@ -1,0 +1,16 @@
+{
+  "links": {
+	"netconf:10.79.5.195:11001/1-netconf:10.100.101.11:2022/1031": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+
+        "netconf:10.100.101.11:2022/1040-netconf:10.79.5.195:11001/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+
+	"netconf:10.79.1.206:11001/1-netconf:10.100.101.12:2022/1031": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+
+        "netconf:10.100.101.12:2022/1040-netconf:10.79.1.206:11001/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+
+	"netconf:10.79.1.100:11001/1-netconf:10.100.101.14:2022/1031": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+
+        "netconf:10.100.101.14:2022/1040-netconf:10.79.1.100:11001/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}}
+ }
+}
+

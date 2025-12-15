@@ -1,0 +1,971 @@
+/* Copyright 2022 ETSI
+Licensed under the BSD-3 Clause (https://forge.etsi.org/legal-matters) */
+
+module etsi-qkd-sdn-node {
+
+  yang-version "1";
+
+  namespace "urn:etsi:qkd:yang:etsi-qkd-node";
+
+  prefix "etsi-qkdn";
+  
+  import ietf-yang-types { prefix "yang"; }
+  import ietf-inet-types { prefix "inet"; }
+  import etsi-qkd-node-types { prefix "etsi-qkdn-types"; }
+
+  // meta
+  organization "ETSI ISG QKD";
+
+  contact
+    "https://www.etsi.org/committee/qkd
+    vicente@fi.upm.es";
+
+  description
+    "This module contains the groupings and containers composing 
+    the software-defined QKD node information models
+    specified in ETSI GS QKD 015 V2.1.1";
+
+  revision "2022-01-30" {
+    description
+      "Refinement of the YANG model to make it compatible with the ETSI ISG QKD 018. Minor fixes.";
+    reference
+      "ETSI GS QKD 015 V2.1.1 (2022-01)";
+  }
+
+  revision "2020-09-30" {
+    description
+      "First definition based on initial requirement analysis.";
+    reference
+      "ETSI GS QKD 015 V1.1.1 (2021-03)";
+  }
+  
+  grouping qkdn_id {
+    description "Grouping of qkdn_id leaf.";
+    
+    leaf qkdn_id {
+      type yang:uuid;
+      mandatory true;
+      description
+        "This value reflects the unique ID of the SD-QKD node.";
+    }
+  }
+  
+  grouping qkdn_version {
+    description "Grouping of qkdn_version leaf.";
+    
+    leaf qkdn_version {
+      type string;
+      description "Hardware or software version of the SD-QKD node.";
+    }
+  }
+
+  grouping qkdn_location_id {
+    description "Grouping of qkdn_location_id leaf.";
+    
+    leaf qkdn_location_id {
+      type string;
+      default "";
+      description
+        "This value enables the location of the secure
+        area that contains the SD-QKD node to be specified.";
+    }
+  }
+
+  grouping qkdn_status {
+    description "Grouping of qkdn_status leaf.";
+    
+    leaf qkdn_status {
+      type etsi-qkdn-types:qkdn-status-types;
+      config false;
+      description "Status of the SD-QKD node.";
+    }
+  }
+
+  grouping qkdn_capabilities {
+    description "Grouping of the capabilities of the SD-QKD node.";
+    
+    container qkdn_capabilities {
+      description "Capabilities of the SD-QKD node.";
+
+      leaf link_stats_support {
+        type boolean;
+        default true;
+        description
+          "If true, this node exposes link-related statistics (secure key 
+          generation rate-SKR, link consumption, status, QBER).";
+      }
+
+      leaf application_stats_support {
+        type boolean;
+        default true;
+        description "If true, this node exposes application related 
+          statistics (application consumption, alerts).";
+      }
+
+      leaf key_relay_mode_enable {
+        type boolean;
+        default true;
+        description "If true, this node supports key relay (multi-hop) mode services.";
+      }
+    }
+  }
+  
+  grouping app_id {
+    description "Grouping of app_id leaf.";
+    
+    leaf app_id {
+      type yang:uuid;
+      description
+        "Unique ID that identifies a QKD application consisting of a set of entities 
+        that are allowed to receive keys shared with each other from the SD-QKD nodes 
+        they connect to. This value is similar to a key ID or key handle.";
+    }
+  }
+  
+  grouping app_basic {
+    description "Grouping of app's basic parameters.";
+    
+    uses app_id;
+        
+    leaf app_status {
+      type etsi-qkdn-types:app-status-types;
+      config false;
+      description "Status of the application.";
+    }
+  }
+  
+  grouping app_priority {
+    description "Grouping of app_priority leaf.";
+    
+    leaf app_priority {
+      type uint32;
+      default 0;
+      description "Priority of the association/application 
+        might be defined by the user but usually 
+        handled by a network administrator.";
+    }
+  }
+  
+  grouping app_details {
+    description "Grouping of app's details parameters.";
+    
+    leaf app_type {
+      type etsi-qkdn-types:qkd-app-types;
+      description "Type of the registered application. These
+        values, defined within the types module, can be client
+        (if an external applications requesting keys)
+        or internal (application is defined to maintain
+        the QKD - e.g. multi-hop, authentication or
+        other encryption operations).";
+    }
+    
+    leaf server_app_id {
+      type inet:uri;
+      description "ID that identifies the entity that initiated the 
+      creation of the QKD application to receive keys shared with one 
+      or more specified target entity identified by client_app_id.  
+      It is a client in the interface to the SD-QKD node and the name 
+      server_app_id reflects that it requested the QKD application to 
+      be initiated.";
+    }
+
+    leaf-list client_app_id {
+      type inet:uri;
+      description "List of IDs that identifies the one or more 
+      entities that are allowed to receive keys from SD-QKD 
+      node(s) under the QKD application in addition to the 
+      initiating entity identified by server_app_id.";
+    }
+
+    uses app_priority;
+  }
+  
+  grouping local_qkdn_id {
+    description "Grouping of local_qkdn_id leaf.";
+    
+    leaf local_qkdn_id {
+      type yang:uuid;
+      description "Unique ID of the local SD-QKD node which
+        is providing QKD keys to the local application.";
+    }
+  }
+  
+  grouping app_time {
+    description "Grouping of app's time parameters.";
+    
+    leaf creation_time {
+      type yang:date-and-time;
+      config false;
+      description "Date and time of the service creation.";
+    }
+
+    leaf expiration_time {
+      type yang:date-and-time;
+      description "Date and time of the service expiration.";
+    }
+  }
+  
+  grouping app_statistics {
+    description "Grouping of app's statistic parameters.";
+    
+    container app_statistics {
+      description "Statistical information relating to a specific statistic period of time.";
+
+      list statistics {
+        key "end_time";
+        config false;
+        description "List of statistics.";
+
+        leaf end_time {
+          type yang:date-and-time;
+          config false;
+          description "End time for the statistic period.";
+        }
+
+        leaf start_time {
+          type yang:date-and-time;
+          config false;
+          description "Start time for the statistic period.";
+        }
+
+        leaf consumed_bits {
+          type uint32;
+          config false;
+          description "Consumed secret key amount (in bits) for a statistics collection period of time.";
+        }
+      }
+    }
+  }
+  
+  grouping app_qos {
+    description "Grouping of app's basic qos parameters.";
+    
+    container app_qos {
+      description "Requested Quality of Service.";
+      
+      leaf max_bandwidth {
+        type uint32;
+        description "Maximum bandwidth (in bits per second) allowed for 
+        this specific application. Exceeding this value will raise an 
+        error from the local key store to the appl. This value might 
+        be internally configured (or by an admin) with a default value.";
+      }
+
+      leaf min_bandwidth {
+        type uint32;
+        description "This value is an optional QoS parameter which 
+          enables to require a minimum key rate (in bits per second) 
+          for the application.";
+      }
+
+      leaf jitter {
+        type uint32;
+        description "This value allows to specify the maximum jitter 
+          (in msec) to be provided by the key delivery API for 
+          applications requiring fast rekeying. This value can be 
+          coordinated with the other QoS to provide a wide enough 
+          QoS definition.";
+      }
+
+      leaf ttl {
+        type uint32;
+        description "This value is used to specify the maximum time 
+          (in seconds) that a key could be kept in the key store for 
+          a given application without being used.";
+      }
+    }
+  }
+  
+  grouping augmented_app_qos {
+    description "Grouping of app's detailed qos parameters.";
+    
+    uses app_qos {
+      augment app_qos {
+        description "Augmentation of app's basic parameters with app's detailed qos parameters.";
+
+        leaf clients_shared_path_enable {
+          type boolean;
+          default false;
+          description "If true, multiple clients for this 
+            application might share keys to reduce service 
+            impact (consumption).";
+        }
+
+        leaf clients_shared_keys_required {
+          type boolean;
+          default false;
+          description "If true, multiple clients for this application
+            might share keys to reduce service impact (consumption).";
+        }
+      }
+    }
+  }
+
+  grouping qkd_applications {
+    description "Grouping of the list of applications container.";
+    
+    container qkd_applications {
+      description "List of applications container.";
+
+      list qkd_app {
+        key "app_id";
+        description "List of applications that are currently registered
+          in the SD-QKD node. Any entity consuming QKD-derived keys (either 
+          for internal or external purposes) is considered an application.";
+   
+        uses app_basic;
+    
+        uses app_details;
+
+        uses app_time;
+        
+        uses app_statistics;
+        
+        uses augmented_app_qos;
+
+        leaf-list backing_qkdl_id {
+          type yang:uuid;
+          description "Unique ID of the key association link which is 
+            providing QKD keys to these applications.";
+        }
+
+        uses local_qkdn_id;
+
+        leaf remote_qkdn_id {
+          type yang:uuid;
+          description "Unique ID of the remote SD-QKD node which 
+            is providing QKD keys to the remote application. 
+            While unknown, the local SD-QKD will not be able to 
+            provide keys to the local application.";
+        }
+      }
+    }
+  }
+
+  grouping qkdi_status {
+    description "Grouping of qkdi_status leaf.";
+    
+    leaf qkdi_status {
+      type etsi-qkdn-types:iface-status-types;
+      config false;
+      description "Status of a QKD interface of the SD-QKD node.";
+    }
+  }
+  
+  grouping qkdi_model {
+    description "Grouping of qkdi_model leaf.";
+    
+    leaf qkdi_model {
+      type string;
+      description "Device model (vendor/device).";
+    }
+  }
+  
+  grouping qkdi_type {
+    description "Grouping of qkdi_type leaf.";
+    
+    leaf qkdi_type {
+      type etsi-qkdn-types:qkd-technology-types;
+      description "Interface type (QKD  technology).";
+    }
+  }
+  
+  grouping qkdi_att_point {
+    description "Grouping of the interface attachment points to an optical switch.";
+    
+    container qkdi_att_point {
+      description "Interface attachment point to an optical switch.";
+
+      leaf device {
+        type string;
+        description "Unique ID of the optical switch (or
+        passive component) to which the interface is connected.";
+      }
+
+      leaf port {
+        type uint32;
+        description "Port ID of the device to which the interface
+        is connected.";
+      }
+    }
+  }
+  
+  grouping qkdi_id {
+    description "Grouping of qkdi_id leaf.";
+    
+    leaf qkdi_id {
+      type uint32;
+      description "Interface id. It is described as a locally unique number, 
+      which is globally unique when combined with the SD-QKD node ID.";
+    }
+  }
+  
+  grouping qkd_interface_item {
+    description "Grouping of the interface parameters.";
+  
+    uses qkdi_id;
+
+    uses qkdi_model;
+
+    uses qkdi_type;
+
+    uses qkdi_att_point;
+
+    container qkdi_capabilities {
+      description "Capabilities of the QKD system (interface).";
+
+      leaf role_support {
+        type etsi-qkdn-types:qkd-role-types;
+        description "QKD node support for key relay mode services.";
+      }
+
+      leaf wavelength_range {
+        type etsi-qkdn-types:wavelength-range-type;
+        description "Range of supported wavelengths (nm) (multiple
+          if it contains a tunable laser).";
+      }
+
+      leaf max_absorption {
+        type decimal64 {
+          fraction-digits 3;
+        }
+        description "Maximum absorption supported (in dB).";
+      }
+    }
+  }
+  
+  grouping qkd_interfaces {
+    description "Grouping of the list of interfaces.";
+  
+    container qkd_interfaces {
+      description "List of interfaces container.";
+
+      list qkd_interface {
+        key "qkdi_id";
+        description "List of physical QKD modules in a secure location,
+          abstracted as interfaces of the SD-QKD node.";
+
+        uses qkd_interface_item;
+        
+        uses qkdi_status;
+        
+      }
+    }
+  }
+  
+  grouping qkdl_id {
+    description "Grouping of qkdl_id leaf.";
+    
+    leaf qkdl_id {
+      type yang:uuid;
+      description "Unique ID of the QKD link (key association).";
+    }
+  }
+
+  grouping qkdl_status {
+    description "Grouping of qkdl_status leaf.";
+    
+    leaf qkdl_status {
+      type etsi-qkdn-types:link-status-types;
+      description "Status of the QKD key association link.";
+    }
+  }
+
+  grouping common_performance {
+    description "Grouping of common performance parameters.";
+    
+    leaf expected_consumption {
+      type uint32;
+      config false;
+      description "Sum of all the application's bandwidth (in bits per 
+        second) on this particular key association link.";
+    }
+    
+    leaf skr {
+      type uint32;
+      config false;
+      description "Secret key rate generation (in bits per second) 
+        of the key association link.";
+    }
+
+    leaf eskr {
+      type uint32;
+      config false;
+      description "Effective secret key rate (in bits per second) generation 
+        of the key association link available after internal consumption.";
+    }
+  }
+
+  grouping physical_link_perf {
+    description "Grouping of the list of physical performance parameters.";
+    
+    list phys_perf {
+      key "perf_type";
+      config false;
+      description "List of physical performance parameters.";
+
+      leaf perf_type {
+        type etsi-qkdn-types:phys-perf-types;
+        config false;
+        description "Type of the physical performance value to be
+          exposed to the controller.";
+      }
+
+      leaf value {
+        type decimal64 {
+          fraction-digits 3;
+        }
+        config false;
+        description "Numerical value for the performance parameter 
+          type specified above.";
+      }
+    }
+  }
+
+  grouping virtual_link_spec {
+    description "Grouping of the virtual link's parameters.";
+    
+    leaf virt_prev_hop {
+      type yang:uuid;
+      description "Previous hop in a multi-hop/virtual key
+        association link config.";
+    }
+
+    leaf-list virt_next_hop {
+      type yang:uuid;
+      description "Next hop(s) in a multihop/virtual key 
+        association link config. Defined as a list for multicast 
+        over shared sub-paths.";
+    }
+
+    leaf virt_bandwidth {
+      type uint32;
+      description "Required bandwidth (in bits per second) for that key association link. 
+        Used to reserve bandwidth from the physical QKD links to support the virtual key 
+        association link as an internal application.";
+    }
+  }
+
+  grouping physical_link_spec {
+    description "Grouping of the physical link's parameters.";
+    
+    leaf phys_channel_att {
+      type decimal64 {
+        fraction-digits 3;
+      }
+      description "Expected attenuation on the quantum channel (in dB) 
+        between the Source/qkd_node and Destination/qkd_node.";
+      
+    }
+            
+    leaf phys_wavelength {
+      type etsi-qkdn-types:wavelength;    
+      description "Wavelength (in nm) to be used for the quantum channel. 
+        If the interface is not tunable, this configuration could be bypassed";
+    }
+
+    leaf phys_qkd_role {
+      type etsi-qkdn-types:qkd-role-types;
+      description "Transmitter/receiver mode for the QKD module. 
+        If there is no multi-role support, this could be ignored.";
+    }
+  }
+
+  grouping qkd_links {
+    description "Grouping of the list of links.";
+    
+    container qkd_links {
+      description "List of links container";
+      
+      list qkd_link {
+        key "qkdl_id";
+        description "List of (key association) links to other SD-QKD nodes in the network.
+          The links can be physical (direct quantum channel) or virtual multi-hop 
+          connection doing key-relay through several nodes.";
+
+        uses qkdl_id;
+        
+        uses qkdl_status;
+
+        leaf qkdl_auth_sign {
+          type string;
+          description "Expected signature of remote device.";
+        }
+
+        leaf qkdl_auth_status {
+          type etsi-qkdn-types:link-auth-status-types;
+          description "Authentication status of the QKD key association link.";
+        }
+
+        leaf qkdl_enable {
+          type boolean;
+          default true;
+          description "This value allows to enable of disable the key generation 
+            process for a given link.";
+
+        }
+
+        container qkdl_local {
+          description "Source (local) node of the SD-QKD link.";
+
+          leaf qkdn_id {
+            type yang:uuid;
+            description "Unique ID of the local SD-QKD node.";
+          }
+
+          leaf qkdi_id {
+            type uint32;
+            description "Interface used to create the key association link.";
+          }
+
+          leaf qkdn_ip {
+            type string;
+            description "IP address of local QKD node.";
+          }
+
+          leaf qkdn_port {
+            type string;
+            description "TCP port of local QKD node.";
+          }
+        }
+
+        container qkdl_remote {
+          description "Destination (remote) unique SD-QKD node.";
+
+          leaf qkdn_id {
+            type yang:uuid;
+            description "Unique ID of the remote SD-QKD node. This value is
+              provided by the SDN controller when the key association link 
+              request arrives.";
+          }
+
+          leaf qkdi_id {
+            type uint32;
+            description "Interface used to create the link.";
+          }
+	  
+	  leaf qkdn_ip {
+            type string;
+            description "IP address of remote QKD node.";
+          }
+
+          leaf qkdn_port {
+            type string;
+            description "TCP port of remote QKD node.";
+          }
+        }
+
+        leaf qkdl_type {
+          type etsi-qkdn-types:qkd-link-types;
+          description "Key Association Link type: Virtual (multi-hop) or Direct.";
+        }
+
+        leaf-list qkdl_applications {
+          type yang:uuid;
+          description "Applications which are consuming keys from
+           this key association link.";
+        }
+
+        uses virtual_link_spec {
+          when "qkdl_type = 'etsi-qkdn-types:VIRT'" {
+            description "Virtual key association link specific configuration.";
+          }
+        }
+
+        uses physical_link_spec {
+          when "qkdl_type = 'etsi-qkdn-types:PHYS'" {
+            description "Physical key association link specific configuration.";
+          }
+        }
+
+        container qkdl_performance {
+          description "Container of link's performace parameters.";
+
+          uses common_performance;
+
+          uses physical_link_perf {
+            when "../qkdl_type = 'etsi-qkdn-types:PHYS'" {
+              description "Performance of the specific physical link.";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  container qkd_node {
+    description
+      "Top module describing a software-defined QKD node (SD-QKD node).";
+
+    uses qkdn_id;
+    
+    uses qkdn_status;
+    
+    uses qkdn_version;
+
+    uses qkdn_location_id;
+
+    uses qkdn_capabilities;
+    
+    uses qkd_applications;
+
+    uses qkd_interfaces;
+
+    uses qkd_links;
+  }
+  
+  grouping message {
+    description "Grouping of message leaf.";
+    
+    leaf message {
+      type string;
+      description "Placeholder for the message.";
+    }
+  }
+
+  grouping severity {
+    description "Grouping of severity leaf.";
+    
+    leaf severity {
+      type etsi-qkdn-types:severity-types;
+      description "Placeholder for the severity.";
+    }
+  }
+  
+  grouping reason {
+    description "Grouping of reason leaf.";
+    
+    leaf reason {
+      type string;
+      description "Auxiliary parameter to include additional
+        information about the reason for link failure.";
+    }
+  }
+
+  notification sdqkdn_application_new {
+    description "Defined for the controller to detect new applications 
+      requesting keys from a QKD node. This maps with the workflow shown 
+      in clause 5.2 'QKD Application Registration'. Parameters such as 
+      client and server app IDs, local QKD node identifier, priority and 
+      QoS are sent in the notification.";
+    
+    container qkd_application {
+      description "'sdqkdn_application_new' notification's qkd_application parameters.";
+    
+      uses app_details;
+
+      uses local_qkdn_id;
+     
+      uses augmented_app_qos;
+      
+    }
+  }
+
+  notification sdqkdn_application_qos_update {
+    description "Notification that includes information about priority or 
+      QoS changes on an existing and already registered application.";
+      
+    container qkd_application {
+      description "'sdqkdn_application_qos_update' notification's qkd_application parameters.";
+    
+      uses app_id;
+     
+      uses augmented_app_qos;
+
+      uses app_priority;
+      
+    }
+  }
+
+  notification sdqkdn_application_disconnected {
+    description "Includes the application identifier to inform that the 
+      application is no longer registered and active in the QKD node.";
+      
+    container qkd_application {
+      description "'sdqkdn_application_disconnected' notification's qkd_application parameters.";
+    
+      uses app_id;
+      
+    }
+  }
+
+  notification sdqkdn_interface_new {
+    description "Includes all the information about the new QKD system 
+      installed in the secure location of a given QKD node.";
+    
+    container qkd_interface {
+      description "'sdqkdn_interface_new' notification's qkd_interface parameters.";
+    
+      uses qkd_interface_item;
+      
+    }
+  }
+
+  notification sdqkdn_interface_down {
+    description "Identifies an interface within a QKD node which is not 
+      working as expected, allowing additional information to be included 
+      in a 'reason' string field.";
+    
+    container qkd_interface {
+      description "'sdqkdn_interface_down' notification's qkd_interface parameters.";
+      
+      uses qkdi_id;
+
+      uses reason;
+      
+    }
+  }
+
+  notification sdqkdn_interface_out {
+    description "Contains the ID of an interface which is switch off and 
+      uninstall from a QKD node. This information can be gathered from this 
+      notification or from regular polling from the controller's side.";
+    
+    container qkd_interface {
+      description "'sdqkdn_interface_out' notification's qkd_interface parameters.";
+      
+      uses qkdi_id;
+      
+    }
+  }
+
+  notification sdqkdn_link_down {
+    description "As in the interface down event, this notification contains
+      the identifier of a given link which has gone down unexpectedly. 
+      In addition, further information can be sent in the 'reason' field.";
+    
+    container qkd_link {
+      description "'sdqkdn_link_down' notification's qkd_link parameters.";
+
+      uses qkdl_id;
+
+      uses reason;
+      
+    }
+  }
+
+  notification sdqkdn_link_perf_update {
+    description "This notification allows to inform of any mayor 
+      modification in the performance of an active link. The identifier 
+      of the link is sent together with the performance parameters of the link.";
+
+    container qkd_link {
+      description "'sdqkdn_link_perf_update' notification's qkd_link parameters.";
+
+      uses qkdl_id;
+
+      container performance {
+      description "'sdqkdn_link_perf_update' notification's performance parameters.";
+
+        uses common_performance;
+
+        uses physical_link_perf;
+  
+      }   
+    }
+  }
+
+  notification sdqkdn_link_overloaded {
+    description "This notification is sent when the link cannot cope with the 
+      demand. The link identifier is sent with the expected consumption and 
+      general performance parameters.";
+    
+    container qkd_link {
+      description "'sdqkdn_link_overloaded' notification's qkd_link parameters.";
+
+      uses qkdl_id;
+
+      container performance {
+      description "'sdqkdn_link_overloaded' notification's performance parameters.";
+
+        uses common_performance;
+  
+      }   
+    }
+  }
+
+  notification alarm {
+    description "'alarm' notification.";
+
+    container link {
+      description "'alarm' notification's link parameters.";
+
+      uses qkdl_id;
+
+      uses qkdl_status;  
+
+      uses message;
+        
+      uses severity;
+        
+    }
+
+    container interface {
+      description "'alarm' notification's interface parameters.";
+
+      uses qkdi_id;
+        
+      uses qkdi_status;
+
+      uses message;
+        
+      uses severity;
+        
+    }
+
+    container application {
+      description "'alarm' notification's application parameters.";
+
+      uses app_basic;
+
+      uses message;
+        
+      uses severity;
+        
+    }
+
+  }
+
+  notification event {
+    description "'event' notification.";
+
+    container link {
+      description "'alarm' notification's link parameters.";
+      
+      uses qkdl_id;
+
+      uses qkdl_status;    
+
+      uses message;
+        
+      uses severity;
+        
+    }
+
+    container interface {
+      description "'alarm' notification's interface parameters.";
+
+      uses qkdi_id;
+        
+      uses qkdi_status;
+
+      uses message;
+        
+      uses severity;
+        
+    }
+
+    container application {
+      description "'alarm' notification's application parameters.";
+
+      uses app_basic;
+
+      uses message;
+        
+      uses severity;
+        
+    }
+
+  }
+
+}

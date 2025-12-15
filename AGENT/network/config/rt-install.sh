@@ -1,0 +1,10 @@
+/sbin/ip route add 131.175.19.51 via 193.205.83.65 dev eno8403 > /dev/null 2>&1
+/sbin/ip route add 10.0.0.0/8 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 34.217.184.7 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 52.38.184.231 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 54.69.105.111 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 54.186.68.76 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 131.175.0.0/16 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 140.164.58.4 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 10.248.16.30 via 10.79.250.70 dev gpd0 > /dev/null 2>&1
+/sbin/ip route add 10.248.26.30 via 10.79.250.70 dev gpd0 > /dev/null 2>&1

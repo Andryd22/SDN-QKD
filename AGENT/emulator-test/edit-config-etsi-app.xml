@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <target>
+    <running/>
+  </target>
+  <config>
+    <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+      <qkd_applications>
+        <qkd_app>
+          <app_id>aaaa0001-abcd-cccc-dddd-aaaaaaaa0001</app_id>
+          <app_type   xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:CLIENT</app_type>
+          <server_app_id>f81d4fae-7dec-11d0-a765-aaaaaaaa0001</server_app_id>
+          <client_app_id>f81d4fae-7dec-11d0-a765-aaaaaaaa0002</client_app_id>
+          <app_priority>2</app_priority>
+          <backing_qkdl_id>f81d4fae-aaaa-aaaa-aaaa-00a0c91e6bf6</backing_qkdl_id>
+          <local_qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</local_qkdn_id>
+          <remote_qkdn_id>f81d4fae-7dec-11d0-a765-bbbbbbbbbbbb</remote_qkdn_id>
+        </qkd_app>
+      </qkd_applications>
+    </qkd_node>
+  </config>
+</edit-config>
+

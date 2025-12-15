@@ -1,0 +1,50 @@
+{
+  "devices": {
+    "netconf:10.79.5.195:11001": {
+      "netconf": {
+        "ip": "10.79.5.195",
+        "port": "11001",
+        "username": "root",
+        "password": "root"
+        },
+      "basic": {
+         "locType" : "grid",
+        "gridX" :-50,
+        "gridY" : 550,
+        "name": "PoliMi-CHARLIE",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:10.79.1.206:11001": {
+      "netconf": {
+        "ip": "10.79.1.206",
+        "port": "11001",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : -50,
+        "gridY" : 700,
+        "name": "PoliMi-BOB",
+        "driver": "quancom-netconf"
+      }
+    },
+    "netconf:10.79.1.100:11001": {
+      "netconf": {
+        "ip": "10.79.1.100",
+        "port": "11001",
+        "username": "root",
+        "password": "root"
+      },
+      "basic": {
+        "locType" : "grid",
+        "gridX" : 650,
+        "gridY" : 700,
+        "name": "PoliMi-ALICE",
+        "driver": "quancom-netconf"
+      }
+    }
+  }
+}
+

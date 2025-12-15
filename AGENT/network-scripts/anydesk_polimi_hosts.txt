@@ -1,0 +1,27 @@
+Doris
+DESKTOP-484kJVU
+10.79.1.226
+AnyDesk 1950459582, password: wireless_qkd
+User: User (no password)
+
+Fiona
+DESKTOP-K8FT02U
+10.79.1.115
+AnyDesk 1728358954, password: wireless_qkd
+User: User (no password)
+
+Ethan
+DESKTOP-CATk7GF
+10.79.1.22
+AnyDek 1067059209, password: wireless_qkd
+User: User (no password)
+
+Charlie
+DESKTOP-E5NB8B3
+10.79.5.195
+AnyDesk 1190087030
+Teamviewer 957 294 612, Pwd 957 294 612
+User: QUANCOM
+Password: QUANCOM
+
+

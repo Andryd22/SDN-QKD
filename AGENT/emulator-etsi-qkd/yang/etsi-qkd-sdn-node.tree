@@ -1,0 +1,176 @@
+module: etsi-qkd-sdn-node
+  +--rw qkd_node
+     +--rw qkdn_id              yang:uuid
+     +--ro qkdn_status?         etsi-qkdn-types:qkdn-status-types
+     +--rw qkdn_version?        string
+     +--rw qkdn_location_id?    string
+     +--rw qkdn_capabilities
+     |  +--rw link_stats_support?          boolean
+     |  +--rw application_stats_support?   boolean
+     |  +--rw key_relay_mode_enable?       boolean
+     +--rw qkd_applications
+     |  +--rw qkd_app* [app_id]
+     |     +--rw app_id             yang:uuid
+     |     +--ro app_status?        etsi-qkdn-types:app-status-types
+     |     +--rw app_type?          etsi-qkdn-types:qkd-app-types
+     |     +--rw server_app_id?     inet:uri
+     |     +--rw client_app_id*     inet:uri
+     |     +--rw app_priority?      uint32
+     |     +--ro creation_time?     yang:date-and-time
+     |     +--rw expiration_time?   yang:date-and-time
+     |     +--rw app_statistics
+     |     |  +--ro statistics* [end_time]
+     |     |     +--ro end_time         yang:date-and-time
+     |     |     +--ro start_time?      yang:date-and-time
+     |     |     +--ro consumed_bits?   uint32
+     |     +--rw app_qos
+     |     |  +--rw max_bandwidth?                  uint32
+     |     |  +--rw min_bandwidth?                  uint32
+     |     |  +--rw jitter?                         uint32
+     |     |  +--rw ttl?                            uint32
+     |     |  +--rw clients_shared_path_enable?     boolean
+     |     |  +--rw clients_shared_keys_required?   boolean
+     |     +--rw backing_qkdl_id*   yang:uuid
+     |     +--rw local_qkdn_id?     yang:uuid
+     |     +--rw remote_qkdn_id?    yang:uuid
+     +--rw qkd_interfaces
+     |  +--rw qkd_interface* [qkdi_id]
+     |     +--rw qkdi_id              uint32
+     |     +--rw qkdi_model?          string
+     |     +--rw qkdi_type?           etsi-qkdn-types:qkd-technology-types
+     |     +--rw qkdi_att_point
+     |     |  +--rw device?   string
+     |     |  +--rw port?     uint32
+     |     +--rw qkdi_capabilities
+     |     |  +--rw role_support?       etsi-qkdn-types:qkd-role-types
+     |     |  +--rw wavelength_range?   etsi-qkdn-types:wavelength-range-type
+     |     |  +--rw max_absorption?     decimal64
+     |     +--ro qkdi_status?         etsi-qkdn-types:iface-status-types
+     +--rw qkd_links
+        +--rw qkd_link* [qkdl_id]
+           +--rw qkdl_id              yang:uuid
+           +--rw qkdl_status?         etsi-qkdn-types:link-status-types
+           +--rw qkdl_enable?         boolean
+           +--rw qkdl_local
+           |  +--rw qkdn_id?   yang:uuid
+           |  +--rw qkdi_id?   uint32
+           +--rw qkdl_remote
+           |  +--rw qkdn_id?   yang:uuid
+           |  +--rw qkdi_id?   uint32
+           +--rw qkdl_type?           etsi-qkdn-types:qkd-link-types
+           +--rw qkdl_applications*   yang:uuid
+           +--rw virt_prev_hop?       yang:uuid
+           +--rw virt_next_hop*       yang:uuid
+           +--rw virt_bandwidth?      uint32
+           +--rw phys_channel_att?    decimal64
+           +--rw phys_wavelength?     etsi-qkdn-types:wavelength
+           +--rw phys_qkd_role?       etsi-qkdn-types:qkd-role-types
+           +--rw qkdl_performance
+              +--ro expected_consumption?   uint32
+              +--ro skr?                    uint32
+              +--ro eskr?                   uint32
+              +--ro phys_perf* [perf_type]
+                 +--ro perf_type    etsi-qkdn-types:phys-perf-types
+                 +--ro value?       decimal64
+
+  notifications:
+    +---n sdqkdn_application_new
+    |  +--ro qkd_application
+    |     +--ro app_type?        etsi-qkdn-types:qkd-app-types
+    |     +--ro server_app_id?   inet:uri
+    |     +--ro client_app_id*   inet:uri
+    |     +--ro app_priority?    uint32
+    |     +--ro local_qkdn_id?   yang:uuid
+    |     +--ro app_qos
+    |        +--ro max_bandwidth?                  uint32
+    |        +--ro min_bandwidth?                  uint32
+    |        +--ro jitter?                         uint32
+    |        +--ro ttl?                            uint32
+    |        +--ro clients_shared_path_enable?     boolean
+    |        +--ro clients_shared_keys_required?   boolean
+    +---n sdqkdn_application_qos_update
+    |  +--ro qkd_application
+    |     +--ro app_id?         yang:uuid
+    |     +--ro app_qos
+    |     |  +--ro max_bandwidth?                  uint32
+    |     |  +--ro min_bandwidth?                  uint32
+    |     |  +--ro jitter?                         uint32
+    |     |  +--ro ttl?                            uint32
+    |     |  +--ro clients_shared_path_enable?     boolean
+    |     |  +--ro clients_shared_keys_required?   boolean
+    |     +--ro app_priority?   uint32
+    +---n sdqkdn_application_disconnected
+    |  +--ro qkd_application
+    |     +--ro app_id?   yang:uuid
+    +---n sdqkdn_interface_new
+    |  +--ro qkd_interface
+    |     +--ro qkdi_id?             uint32
+    |     +--ro qkdi_model?          string
+    |     +--ro qkdi_type?           etsi-qkdn-types:qkd-technology-types
+    |     +--ro qkdi_att_point
+    |     |  +--ro device?   string
+    |     |  +--ro port?     uint32
+    |     +--ro qkdi_capabilities
+    |        +--ro role_support?       etsi-qkdn-types:qkd-role-types
+    |        +--ro wavelength_range?   etsi-qkdn-types:wavelength-range-type
+    |        +--ro max_absorption?     decimal64
+    +---n sdqkdn_interface_down
+    |  +--ro qkd_interface
+    |     +--ro qkdi_id?   uint32
+    |     +--ro reason?    string
+    +---n sdqkdn_interface_out
+    |  +--ro qkd_interface
+    |     +--ro qkdi_id?   uint32
+    +---n sdqkdn_link_down
+    |  +--ro qkd_link
+    |     +--ro qkdl_id?   yang:uuid
+    |     +--ro reason?    string
+    +---n sdqkdn_link_perf_update
+    |  +--ro qkd_link
+    |     +--ro qkdl_id?       yang:uuid
+    |     +--ro performance
+    |        +--ro expected_consumption?   uint32
+    |        +--ro skr?                    uint32
+    |        +--ro eskr?                   uint32
+    |        +--ro phys_perf* [perf_type]
+    |           +--ro perf_type    etsi-qkdn-types:phys-perf-types
+    |           +--ro value?       decimal64
+    +---n sdqkdn_link_overloaded
+    |  +--ro qkd_link
+    |     +--ro qkdl_id?       yang:uuid
+    |     +--ro performance
+    |        +--ro expected_consumption?   uint32
+    |        +--ro skr?                    uint32
+    |        +--ro eskr?                   uint32
+    +---n alarm
+    |  +--ro link
+    |  |  +--ro qkdl_id?       yang:uuid
+    |  |  +--ro qkdl_status?   etsi-qkdn-types:link-status-types
+    |  |  +--ro message?       string
+    |  |  +--ro severity?      etsi-qkdn-types:severity-types
+    |  +--ro interface
+    |  |  +--ro qkdi_id?       uint32
+    |  |  +--ro qkdi_status?   etsi-qkdn-types:iface-status-types
+    |  |  +--ro message?       string
+    |  |  +--ro severity?      etsi-qkdn-types:severity-types
+    |  +--ro application
+    |     +--ro app_id?       yang:uuid
+    |     +--ro app_status?   etsi-qkdn-types:app-status-types
+    |     +--ro message?      string
+    |     +--ro severity?     etsi-qkdn-types:severity-types
+    +---n event
+       +--ro link
+       |  +--ro qkdl_id?       yang:uuid
+       |  +--ro qkdl_status?   etsi-qkdn-types:link-status-types
+       |  +--ro message?       string
+       |  +--ro severity?      etsi-qkdn-types:severity-types
+       +--ro interface
+       |  +--ro qkdi_id?       uint32
+       |  +--ro qkdi_status?   etsi-qkdn-types:iface-status-types
+       |  +--ro message?       string
+       |  +--ro severity?      etsi-qkdn-types:severity-types
+       +--ro application
+          +--ro app_id?       yang:uuid
+          +--ro app_status?   etsi-qkdn-types:app-status-types
+          +--ro message?      string
+          +--ro severity?     etsi-qkdn-types:severity-types

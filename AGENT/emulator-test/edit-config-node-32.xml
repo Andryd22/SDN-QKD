@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<edit-config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <target>
+    <running/>
+  </target>
+  <config xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+      <qkdn_id>aaaaaaaa-aaaa-aaaa-0032-000000006055</qkdn_id>
+    </qkd_node>
+  </config>
+</edit-config>

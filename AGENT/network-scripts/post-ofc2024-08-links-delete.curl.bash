@@ -1,0 +1,12 @@
+
+echo "Deleting QKD links"
+
+curl -u karaf:karaf -X DELETE --header 'Accept: application/json' 'http://193.205.83.112:8181/onos/quantum-app/links/deleteLink?key=bbbbbbbb-0047-bbbb-0118-bbbbbbbbbbbb'
+echo " --- Alice 100 --> Bob 118"
+
+curl -u karaf:karaf -X DELETE --header 'Accept: application/json' 'http://193.205.83.112:8181/onos/quantum-app/links/deleteLink?key=bbbbbbbb-0100-bbbb-0118-bbbbbbbbbbbb'
+echo " --- Bob 118 --> Charlie 47"
+
+curl -u karaf:karaf -X DELETE --header 'Accept: application/json' 'http://193.205.83.112:8181/onos/quantum-app/links/deleteLink?key=bbbbbbbb-0100-bbbb-0195-bbbbbbbbbbbb'
+echo " --- Charlie 47 --> Alice 100"
+
