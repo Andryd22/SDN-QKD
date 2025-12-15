@@ -1,0 +1,6 @@
+{
+  "masterAddress": "10.30.2.101",
+  "masterPort": "1234",
+  "slaveAddress": "10.30.2.201",
+  "slavePort": "1234"
+}

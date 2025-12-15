@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "title": "linkCreate",
+  "required": [
+    "srcConnectPoint",
+    "dstConnectPoint"
+  ],
+  "properties": {
+    "srcConnectPoint": {
+      "type": "string",
+      "example": "netconf:10.79.1.47:11001/1"
+    },
+    "dstConnectPoint": {
+      "type": "string",
+      "example": "netconf:10.79.1.47:11002/1"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "appAddress": "10.30.2.101",
+  "appPort": "1234",
+  "kmAddress": "10.30.2.201",
+  "kmPort": "2022"
+}

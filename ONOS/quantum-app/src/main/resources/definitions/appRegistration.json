@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "title": "appRegistration",
+  "required": [
+    "appAddress",
+    "appPort",
+    "kmAddress",
+    "kmPort"
+  ],
+  "properties": {
+    "appAddress": {
+      "type": "string",
+      "example": "10.30.2.101"
+    },
+    "appPort": {
+      "type": "string",
+      "example": "1234"
+    },
+    "kmAddress": {
+      "type": "string",
+      "example": "10.100.101.31"
+    },
+    "kmPort": {
+      "type": "string",
+      "example": "830"
+    }
+  }
+}

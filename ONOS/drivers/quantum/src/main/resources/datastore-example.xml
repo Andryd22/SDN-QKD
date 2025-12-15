@@ -1,0 +1,99 @@
+<qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node" xmlns:types="urn:etsi:qkd:yang:etsi-qkd-node-types">
+    <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+    <!-- <qkdn_status>types:NEW</qkdn_status>
+    <!-- type: etsi-qkdn-types:qkd-status-types: NEW, OPERATING, DOWN, FAILURE, OUT -->
+    <qkdn_version>2.1.1</qkdn_version>
+    <qkdn_location_id></qkdn_location_id>
+    <qkdn_capabilities>
+        <link_stats_support>true</link_stats_support>
+        <application_stats_support>true</application_stats_support>
+        <key_relay_mode_enable>true</key_relay_mode_enable>
+    </qkdn_capabilities>
+    <qkd_interfaces>
+        <qkd_interface>
+            <!-- # keys: qkdi_id-->
+            <!-- # entries: 0.. -->
+            <qkdi_id>1</qkdi_id>
+            <qkdi_model>
+                <!-- type: string -->
+            </qkdi_model>
+            <qkdi_type>types:CV-QKD</qkdi_type>
+            <!-- type: etsi-qkdn-types:qkd-technology-types: CV-QKD, DV-QKD, DV-QKD-COW, DV-QKD-2Ws -->
+            <qkdi_att_point>
+                <device>local-device</device>
+                <port>1</port>
+            </qkdi_att_point>
+            <qkdi_capabilities>
+                <role_support>types:TRANSCEIVER</role_support>
+                <!-- type: etsi-qkdn-types:qkd-role-types: TRANSMITTER, RECEIVER, TRANSCEIVER -->
+                <wavelength_range>1,12-20,40,50-80</wavelength_range>
+                <!-- type: etsi-qkdn-types:wavelength-range-type: REGEX string -->
+                <max_absorption>0.0</max_absorption>
+            </qkdi_capabilities>
+            <!-- <qkdi_status>types:ENABLED</qkdi_status>
+              <!-- type: etsi-qkdn-types:iface-status-types: ENABLED, DISABLED, FAILED -->
+        </qkd_interface>
+        <qkd_interface>
+            <!-- # keys: qkdi_id-->
+            <!-- # entries: 0.. -->
+            <qkdi_id>2</qkdi_id>
+            <qkdi_model>
+                <!-- type: string -->
+            </qkdi_model>
+            <qkdi_type>types:CV-QKD</qkdi_type>
+            <!-- type: etsi-qkdn-types:qkd-technology-types: CV-QKD, DV-QKD, DV-QKD-COW, DV-QKD-2Ws -->
+            <qkdi_att_point>
+                <device>local-device</device>
+                <port>2</port>
+            </qkdi_att_point>
+            <qkdi_capabilities>
+                <role_support>types:TRANSCEIVER</role_support>
+                <!-- type: etsi-qkdn-types:qkd-role-types: TRANSMITTER, RECEIVER, TRANSCEIVER -->
+                <wavelength_range>1,12-20,40,50-80</wavelength_range>
+                <!-- type: etsi-qkdn-types:wavelength-range-type: REGEX string -->
+                <max_absorption>0.0</max_absorption>
+            </qkdi_capabilities>
+            <!-- <qkdi_status>types:ENABLED</qkdi_status>
+              <!-- type: etsi-qkdn-types:iface-status-types: ENABLED, DISABLED, FAILED -->
+        </qkd_interface>
+    </qkd_interfaces>
+    <qkd_links>
+        <qkd_link>
+            <!-- # keys: qkdl_id-->
+            <!-- # entries: 0.. -->
+            <qkdl_id>f81d4fae-aaaa-aaaa-aaaa-00a0c91e6bf6</qkdl_id>
+            <qkdl_status>types:OFF</qkdl_status>
+            <!-- type: etsi-qkdn-types:link-status-types: ACTIVE, PASSIVE, PENDING, OFF -->
+            <qkdl_enable>true</qkdl_enable>
+            <qkdl_local>
+                <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+                <qkdi_id>1</qkdi_id>
+            </qkdl_local>
+            <qkdl_remote>
+                <qkdn_id>f81d4fae-7dec-11d0-a765-bbbbbbbbbbbb</qkdn_id>
+                <qkdi_id>1</qkdi_id>
+            </qkdl_remote>
+            <qkdl_type>types:PHYS</qkdl_type>
+            <!-- type: etsi-qkdn-types:qkd-link-types: VIRT, PHYS -->
+            <!-- <qkdl_applications></qkdl_applications> -->
+            <!-- NOTE: removed tags <virt_prev_hop> <virt_next_hop> <virt_bandwidth> -->
+            <phys_channel_att>3.0</phys_channel_att>
+            <phys_wavelength>57</phys_wavelength>
+            <!-- type: etsi-qkdn-types:wavelength REGEX pattern "([1-9][0-9]{0,3})" -->
+            <phys_qkd_role>types:TRANSMITTER</phys_qkd_role>
+            <!-- type: etsi-qkdn-types:qkd-role-types: TRANSMITTER, RECEIVER, TRANSCEIVER -->
+            <qkdl_performance>
+                <!-- <expected_consumption>18</expected_consumption>
+                <skr>21</skr>
+                <eskr>32</eskr>
+                <phys_perf>
+                  <!-- # keys: perf_type-->
+                <!-- # entries: 0..
+                <perf_type>types:SNR</perf_type>
+                  <!-- type: etsi-qkdn-types:phys-perf-types: QBER, SNR -->
+                <!--  <value>0.1</value>
+                </phys_perf> -->
+            </qkdl_performance>
+        </qkd_link>
+    </qkd_links>
+</qkd_node>

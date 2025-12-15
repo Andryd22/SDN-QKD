@@ -1,0 +1,66 @@
+<qkd_node xmlns='urn:etsi:qkd:yang:etsi-qkd-node'>
+<qkd_links>
+ <qkd_link>
+   <qkdl_id>f81d4fae-aaaa-aaaa-aaaa-00a0c91e0000</qkdl_id>
+      <qkdl_statusxmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:OFF</qkdl_status>
+      <qkdl_enable>true</qkdl_enable>
+      <qkdl_local>
+        <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+        <qkdi_id>1</qkdi_id>
+      </qkdl_local>
+      <qkdl_remote>
+        <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+        <qkdi_id>1</qkdi_id>
+      </qkdl_remote>
+      <qkdl_typexmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:PHYS</qkdl_type>
+      <phys_channel_att>5.000</phys_channel_att>
+      <phys_wavelength>1552.524</phys_wavelength>
+      <phys_qkd_rolexmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:RECEIVER</phys_qkd_role>
+    </qkd_link>
+  </qkd_links>
+</qkd_node>
+
+<qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+  <qkd_links>
+    <qkd_link>
+      <qkdl_id>f81d4fae-aaaa-aaaa-aaaa-00a0c91e0000</qkdl_id>
+      <qkdl_status xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:OFF</qkdl_status>
+      <qkdl_enable>true</qkdl_enable>
+      <qkdl_local>
+        <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+        <qkdi_id>1</qkdi_id>
+      </qkdl_local>
+      <qkdl_remote>
+        <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+        <qkdi_id>1</qkdi_id>
+      </qkdl_remote>
+      <qkdl_type xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:PHYS</qkdl_type>
+      <phys_channel_att>5.000</phys_channel_att>
+      <phys_wavelength>1552.524</phys_wavelength>
+      <phys_qkd_role xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:RECEIVER</phys_qkd_role>
+    </qkd_link>
+  </qkd_links>
+</qkd_node>
+
+
+<qkd_node xmlns="urn:etsi:qkd:yang:etsi-qkd-node">
+  <qkd_links>
+    <qkd_link>
+      <qkdl_id>f81d4fae-aaaa-aaaa-aaaa-00a0c91e0000</qkdl_id>
+      <qkdl_status xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:OFF</qkdl_status>
+      <qkdl_enable>true</qkdl_enable>
+      <qkdl_local>
+        <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+        <qkdi_id>1</qkdi_id>
+      </qkdl_local>
+      <qkdl_remote>
+        <qkdn_id>f81d4fae-7dec-11d0-a765-aaaaaaaaaaaa</qkdn_id>
+        <qkdi_id>1</qkdi_id> 
+      </qkdl_remote>
+      <qkdl_type xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:PHYS</qkdl_type>
+      <phys_channel_att>5.000</phys_channel_att>
+      <phys_wavelength>1550</phys_wavelength>
+      <phys_qkd_role xmlns:etsi-qkdn-types="urn:etsi:qkd:yang:etsi-qkd-node-types">etsi-qkdn-types:RECEIVER</phys_qkd_role>
+    </qkd_link>
+  </qkd_links>
+</qkd_node>

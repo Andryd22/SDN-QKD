@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "title": "appOpenKeySession",
+  "required": [
+    "masterAddress",
+    "masterPort",
+    "slaveAddress",
+    "slavePort"
+  ],
+  "properties": {
+    "masterAddress": {
+      "type": "string",
+      "example": "10.30.2.101"
+    },
+    "masterPort": {
+      "type": "string",
+      "example": "1234"
+    },
+    "slaveAddress": {
+      "type": "string",
+      "example": "10.30.2.201"
+    },
+    "slavePort": {
+      "type": "string",
+      "example": "1234"
+    }
+  }
+}

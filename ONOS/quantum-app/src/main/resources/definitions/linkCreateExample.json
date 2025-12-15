@@ -1,0 +1,4 @@
+{
+  "srcConnectPoint": "netconf:10.100.101.31:830/1",
+  "dstConnectPoint": "netconf:10.100.101.34:830/1"
+}

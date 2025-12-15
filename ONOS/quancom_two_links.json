@@ -1,0 +1,8 @@
+{
+  "links": {
+        "netconf:172.25.0.101:830/1-netconf:172.25.0.102:830/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+        "netconf:172.25.0.102:830/2-netconf:172.25.0.101:830/1": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+	"netconf:172.25.0.101:830/2-netconf:172.25.0.103:830/1": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}},
+	"netconf:172.25.0.103:830/1-netconf:172.25.0.101:830/2": {"basic" : {"type": "OPTICAL", "bidirectional": false, "metric": 1}}
+ }
+}
