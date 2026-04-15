@@ -83,7 +83,6 @@ L'Agent funge da interfaccia tra il controller ONOS e i nodi QKD emulati: riceve
 Contenuto principale:
 - `emulator-etsi-qkd/` — emulatore del nodo QKD conforme allo standard ETSI
 - `network-scripts/` e `network/` — script e configurazioni di rete
-- File di configurazione NETCONF (`pangps.xml`, `openroadm_old.xml`)
 
 ### 3. Quditto — Digital Twin dei Nodi QKD
 
